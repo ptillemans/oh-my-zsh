@@ -38,20 +38,10 @@ for plugin ($plugins); do
   fi
 done
 
-# Figure out the SHORT hostname
-if [ -n "$commands[scutil]" ]; then
-  # OS X
-  SHORT_HOST=$(scutil --get ComputerName)
-else
-  SHORT_HOST=${HOST/.*/}
-fi
-
-# Save the location of the current completion dump file.
-ZSH_COMPDUMP="${ZDOTDIR:-${HOME}}/.zcompdump-${SHORT_HOST}-${ZSH_VERSION}"
-
 # Load and run compinit
 autoload -U compinit
-compinit -i -d "${ZSH_COMPDUMP}"
+compinit -i
+
 
 # Load all of the plugins that were defined in ~/.zshrc
 for plugin ($plugins); do
